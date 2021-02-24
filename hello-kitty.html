@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<head>
+<link href='https://fonts.googleapis.com/css?family=Poller+One' rel='stylesheet' type='text/css'>
+<script src="/assets/jquery.js"></script>
+<style>
+.buttons {
+  position: relative;
+  left: 0;
+  top: -170px;
+}
+.robot {
+  position: relative;
+  left: 200px;
+  top: -60px;
+}
+.l-ear {
+  width: 5px;
+  height: 0;
+  border-right: 60px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 60px solid #FFBAD2;
+  position: relative;
+  left: 45px;
+  top: 80px
+}
+.r-ear {
+  width: 5px;
+  height: 0;
+  border-right: 10px solid transparent;
+  border-left: 60px solid transparent;
+  border-bottom: 60px solid #FFBAD2;
+  position: relative;
+  left: 170px;
+  top: 20px;
+}
+.flower {
+  font-family: 'Poller One', verdana, arial, sans-serif;
+  font-weight: bold;
+  font-size: 100px;
+  color: #FF4499;
+  position: absolute;
+  top: 50px;
+  left: 160px;
+  z-index: 2;
+}
+@keyframes blink {
+  50% {
+    background: radial-gradient(circle, red 10%, transparent 15%), #FFBAD2;
+    background-size: 50% 100%;
+  }
+}
+@-webkit-keyframes blink {
+  50% {
+    background: -webkit-radial-gradient(circle, red 10%, transparent 15%), #FFBAD2;
+    background-size: 50% 100%;
+  }
+}
+@-moz-keyframes blink {
+  50% {
+    background: -moz-radial-gradient(circle, red 10%, transparent 15%), #FFBAD2;
+    background-size: 50% 100%;
+  }
+}
+.laser {
+  animation: blink .5s infinite;
+  -webkit-animation: blink .5s infinite;
+  -moz-animation: blink .5s infinite;
+}
+.brain {
+  background: radial-gradient(circle, black 10%, transparent 15%), #FFBAD2;
+  background: -moz-radial-gradient(circle, black 10%, transparent 15%),  #FFBAD2; 
+  background: -webkit-radial-gradient(circle, black 10%, transparent 15%),  #FFBAD2;
+  background-size: 50% 100%;
+  height: 160px;
+  width: 250px;
+  border-radius: 65px 65px 70px 70px;
+  position: relative;
+  left: 20px;
+}
+.torso {
+  height: 0;
+  width: 140px;
+  border-bottom: 250px solid #FF4499;
+  border-left: 75px solid transparent;
+  border-right: 75px solid transparent;
+  border-radius: 100px 100px 50px 50px;
+}
+.left {
+  font-family: 'Poller One', verdana, arial, sans-serif;
+  font-weight: bold;
+  font-size: 250px;
+  color: #FFBAD2;
+  transform: rotate(200deg);
+  -webkit-transform: rotate(200deg);
+  -moz-transform: rotate(200deg);
+  position: relative;
+  top: -20px;
+  left: -150px;
+  z-index: -1;
+}
+.right {
+  font-family: 'Poller One', verdana, arial, sans-serif;
+  font-weight: bold;
+  font-size: 250px;
+  color: #FFBAD2;
+  transform: scaleY(-1) rotate(20deg);
+  -webkit-transform: scaleY(-1) rotate(20deg);
+  -moz-transform: scaleY(-1) rotate(20deg);
+  position: relative;
+  top: -320px;
+  left: 150px;
+  z-index: -1;
+}
+.l-foot {
+  height: 120px;
+  width: 100px;
+  background: #FFBAD2;
+  border-radius: 40px;
+  position: relative;
+  left: 40px;
+  top: -30px;
+  z-index: -1;
+}
+.r-foot {
+  height: 120px;
+  width: 100px;
+  background: #FFBAD2;
+  border-radius: 40px;
+  position: relative;
+  left: 150px;
+  top: -150px;
+  z-index: -1;
+}
+
+@keyframes dance {
+  from {
+    left: 800px;
+  }
+}
+@-webkit-keyframes dance {
+  from {
+    left: 800px;
+  }
+}
+@-moz-keyframes dance {
+  from {
+    left: 800px;
+  }
+}
+img {
+  animation: dance 4s infinite;
+  -webkit-animation: dance 4s infinite;
+  -moz-animation: dance 4s infinite;
+  position: absolute;
+  top: 130px;
+  left: 400px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="robot">
+  <div class="l-ear"></div>
+  <div class="r-ear"></div>
+  <div class="flower">✿</div>
+  <div class="brain"></div>
+  <div class="torso">
+    <div class="left">j</div>
+    <div class="right">j</div>
+  </div>
+  <div class="l-foot"></div>
+  <div class="r-foot"></div>
+</div>
+<div class="buttons">
+<button class="flash">laser eyes</button>
+<button class="color">change color!</button>
+<button class="moves">stop/start dancing</button>
+</div>
+
+<img src="/assets/dance_cotter.gif">
+
+<script>
+// When eyes button is clicked, toggle laser class on brain
+$(".flash").click(function() {
+  $(".brain").toggleClass('laser');
+});
+
+// When color button is clicked...
+$(".color").click(function() {
+  // assign each named color a random number 0-255
+  var red = Math.floor(Math.random() * 255);
+  var green = Math.floor(Math.random() * 255);
+  var blue = Math.floor(Math.random() * 255);
+  // Generate a random RGBA
+  var randomRGBA = 'rgba('+red+','+green+','+blue+',1)';
+  //change the body's background to a random color
+  $("body").css("background", randomRGBA);
+});
+
+$(".moves").click(function() {
+  $("img").toggle();
+});
+
+</script>
+</body>
